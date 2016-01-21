@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Linq.Expressions;
 using RepositorioAdapter.Adapter;
 
@@ -10,44 +12,115 @@ namespace RepositorioAdapter.Repositorio
         where TEntity : class
         where TModel : class
     {
+        protected DbContext Context;
+
+        protected DbSet<TEntity> DbSet
+        {
+            get { return Context.Set<TEntity>();}
+        }
+
+        private TAdapter _adapter;
+
+        public BaseRepositorioEntity(DbContext context)
+        {
+            Context = context;
+        } 
+        public TAdapter Adapter //Referencia al adapter y va a ser de solo lectura
+        {
+            get
+            {
+                if(_adapter==null)
+                    _adapter=new TAdapter();
+                return _adapter;
+            } 
+        }
         public TModel Add(TModel model)
         {
-            throw new NotImplementedException();
+            var guardado = Adapter.FromViewModel(model); //objeto que queremos guardar
+            DbSet.Add(guardado);
+            try
+            {
+                Context.SaveChanges();
+                return Adapter.FroModel(guardado);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        public int Delete(params object[] keys)
+        public int Delete(params object[] keys)//le paso la clave de un objeto a borrar para que solo borre ese
         {
-            throw new NotImplementedException();
+            var data = DbSet.Find(keys);
+            DbSet.Remove(data);
+            try
+            {
+                return Context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
         }
 
-        public int Delete(TModel model)
+        public int Delete(TModel model)//le paso un model entero para borrarlo
         {
-            throw new NotImplementedException();
+            var guardar = Adapter.FromViewModel(model);
+            Context.Entry(guardar).State=EntityState.Deleted;
+            try
+            {
+                return Context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+
         }
 
-        public int Delete(Expression<Func<TModel, bool>> consulta)
+        public int Delete(Expression<Func<TEntity, bool>> consulta)
         {
-            throw new NotImplementedException();
+            var guardar = DbSet.Where(consulta);
+            DbSet.RemoveRange(guardar);
+            try
+            {
+                return Context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
         }
 
         public int Update(TModel model)
         {
-            throw new NotImplementedException();
+            var guardar = Adapter.FromViewModel(model);
+            Context.Entry(guardar).State=EntityState.Modified;
+            try
+            {
+                return Context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
         }
 
-        public TModel Get(params object[] keys)
+        public TModel Get(params object[] keys)//obtengo un objeto enconcreto por clave
         {
-            throw new NotImplementedException();
+            var data = DbSet.Find(keys);
+            return Adapter.FroModel(data);
         }
 
-        public ICollection<TModel> Get(Expression<Func<TModel, bool>> consulta)
+        public ICollection<TModel> Get(Expression<Func<TEntity, bool>> consulta)
         {
-            throw new NotImplementedException();
+            var data = DbSet.Where(consulta);
+            return Adapter.FroModel(data.ToList());
         }
 
-        public ICollection<TModel> Get()
+        public ICollection<TModel> Get()//devuelvo una lista de modelos
         {
-            throw new NotImplementedException();
+            return Adapter.FroModel(DbSet.ToList());
         }
     }
 }
