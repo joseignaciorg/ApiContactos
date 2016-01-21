@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiContactos", "ApiContacto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositorioAdapter", "RepositorioAdapter\RepositorioAdapter.csproj", "{C03FC542-EA55-44BA-8635-23A6CE53D3D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactosModel", "ContactosModel\ContactosModel.csproj", "{EBDB8281-0CBD-4F0B-9C85-3B60AC5C10DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C03FC542-EA55-44BA-8635-23A6CE53D3D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C03FC542-EA55-44BA-8635-23A6CE53D3D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C03FC542-EA55-44BA-8635-23A6CE53D3D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBDB8281-0CBD-4F0B-9C85-3B60AC5C10DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBDB8281-0CBD-4F0B-9C85-3B60AC5C10DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBDB8281-0CBD-4F0B-9C85-3B60AC5C10DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBDB8281-0CBD-4F0B-9C85-3B60AC5C10DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

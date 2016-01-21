@@ -34,7 +34,7 @@ namespace RepositorioAdapter.Repositorio
                 return _adapter;
             } 
         }
-        public TModel Add(TModel model)
+        public virtual TModel Add(TModel model)
         {
             var guardado = Adapter.FromViewModel(model); //objeto que queremos guardar
             DbSet.Add(guardado);
@@ -49,7 +49,7 @@ namespace RepositorioAdapter.Repositorio
             }
         }
 
-        public int Delete(params object[] keys)//le paso la clave de un objeto a borrar para que solo borre ese
+        public virtual int Delete(params object[] keys)//le paso la clave de un objeto a borrar para que solo borre ese
         {
             var data = DbSet.Find(keys);
             DbSet.Remove(data);
@@ -63,7 +63,7 @@ namespace RepositorioAdapter.Repositorio
             }
         }
 
-        public int Delete(TModel model)//le paso un model entero para borrarlo
+        public virtual int Delete(TModel model)//le paso un model entero para borrarlo
         {
             var guardar = Adapter.FromViewModel(model);
             Context.Entry(guardar).State=EntityState.Deleted;
@@ -78,7 +78,7 @@ namespace RepositorioAdapter.Repositorio
 
         }
 
-        public int Delete(Expression<Func<TEntity, bool>> consulta)
+        public virtual int Delete(Expression<Func<TEntity, bool>> consulta)
         {
             var guardar = DbSet.Where(consulta);
             DbSet.RemoveRange(guardar);
@@ -92,7 +92,7 @@ namespace RepositorioAdapter.Repositorio
             }
         }
 
-        public int Update(TModel model)
+        public virtual int Update(TModel model)
         {
             var guardar = Adapter.FromViewModel(model);
             Context.Entry(guardar).State=EntityState.Modified;
@@ -106,19 +106,19 @@ namespace RepositorioAdapter.Repositorio
             }
         }
 
-        public TModel Get(params object[] keys)//obtengo un objeto enconcreto por clave
+        public virtual TModel Get(params object[] keys)//obtengo un objeto enconcreto por clave
         {
             var data = DbSet.Find(keys);
             return Adapter.FroModel(data);
         }
 
-        public ICollection<TModel> Get(Expression<Func<TEntity, bool>> consulta)
+        public virtual ICollection<TModel> Get(Expression<Func<TEntity, bool>> consulta)
         {
             var data = DbSet.Where(consulta);
             return Adapter.FroModel(data.ToList());
         }
 
-        public ICollection<TModel> Get()//devuelvo una lista de modelos
+        public virtual ICollection<TModel> Get()//devuelvo una lista de modelos
         {
             return Adapter.FroModel(DbSet.ToList());
         }
