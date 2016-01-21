@@ -11,7 +11,7 @@ using Microsoft.Practices.Unity;
 
 namespace ApiContactos.Controllers
 {
-    public class Usuario2Controller : ApiController
+    public class UsuarioController : ApiController
     {
         [Dependency]
         public UsuarioRepositorio UsuarioRepositorio { get; set; }
