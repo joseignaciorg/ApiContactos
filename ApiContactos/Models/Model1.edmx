@@ -136,8 +136,8 @@
           <Property Name="foto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Enviados" Relationship="Self.FK_Mensaje_Usuario" FromRole="Usuario" ToRole="Mensaje" />
           <NavigationProperty Name="Recibidos" Relationship="Self.FK_Mensaje_Usuario1" FromRole="Usuario" ToRole="Mensaje" />
-          <NavigationProperty Name="Usuario1" Relationship="Self.Contacto" FromRole="Usuario" ToRole="Usuario1" />
-          <NavigationProperty Name="Amigo" Relationship="Self.Contacto" FromRole="Usuario1" ToRole="Usuario" />
+          <NavigationProperty Name="Amigo" Relationship="Self.Contacto" FromRole="Usuario" ToRole="Usuario1" />
+          <NavigationProperty Name="Usuario1" Relationship="Self.Contacto" FromRole="Usuario1" ToRole="Usuario" />
         </EntityType>
         <Association Name="FK_Mensaje_Usuario">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
