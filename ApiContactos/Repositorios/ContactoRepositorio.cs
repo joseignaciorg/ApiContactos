@@ -27,7 +27,7 @@ namespace ApiContactos.Repositorios
                 {
                     idOrigen = id,
                     idDestino = usuario.id,
-                    nombreCompleto = $"{usuario.nombre}  {usuario.apellidos}"
+                    nombreCompleto = $"{usuario.nombre} {usuario.apellidos}"
 
                 });
             }
@@ -44,7 +44,7 @@ namespace ApiContactos.Repositorios
                 {
                     idOrigen = id,
                     idDestino = usuario.id,
-                    nombreCompleto = $"{usuario.nombre}{usuario.apellidos}"
+                    nombreCompleto = $"{usuario.nombre} {usuario.apellidos}"
                 });
             }
             return ret;
