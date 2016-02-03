@@ -7,14 +7,14 @@ namespace RepositorioAdapter.Adapter
     {
         public abstract TEntity FromViewModel(TModel model);
 
-        public abstract TModel FroModel(TEntity model);
+        public abstract TModel FromModel(TEntity model);
         
         public ICollection<TEntity> FromViewModel(ICollection<TModel> model)
         {
             return model.Select(FromViewModel).ToList();
         }
 
-        public ICollection<TModel> FroModel(ICollection<TEntity> model)
+        public ICollection<TModel> FromModel(ICollection<TEntity> model)
         {
             //Se podria hacer tb de esta forma
             //var retorno=new List<TModel>();
@@ -24,7 +24,7 @@ namespace RepositorioAdapter.Adapter
             //}
             //return retorno;
 
-            return model.Select(FroModel).ToList();
+            return model.Select(FromModel).ToList();
         }
     }
 }

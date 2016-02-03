@@ -10,9 +10,9 @@ namespace RepositorioAdapter.Adapter
     public interface IAdapter<TEntity,TModel>
     {
         TEntity FromViewModel(TModel model);
-        TModel FroModel(TEntity model);
+        TModel FromModel(TEntity model);
 
         ICollection<TEntity> FromViewModel(ICollection<TModel> model);
-        ICollection<TModel> FroModel(ICollection<TEntity> model);
+        ICollection<TModel> FromModel(ICollection<TEntity> model);
     }
 }

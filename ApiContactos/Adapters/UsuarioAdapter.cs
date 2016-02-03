@@ -19,7 +19,7 @@ namespace ApiContactos.Adapters
             };
         }
 
-        public override UsuarioModel FroModel(Usuario model)
+        public override UsuarioModel FromModel(Usuario model)
         {
             return new UsuarioModel()
             {

@@ -41,7 +41,7 @@ namespace RepositorioAdapter.Repositorio
             try
             {
                 Context.SaveChanges();
-                return Adapter.FroModel(guardado);
+                return Adapter.FromModel(guardado);
             }
             catch (Exception)
             {
@@ -109,18 +109,18 @@ namespace RepositorioAdapter.Repositorio
         public virtual TModel Get(params object[] keys)//obtengo un objeto enconcreto por clave
         {
             var data = DbSet.Find(keys);
-            return Adapter.FroModel(data);
+            return Adapter.FromModel(data);
         }
 
         public virtual ICollection<TModel> Get(Expression<Func<TEntity, bool>> consulta)
         {
             var data = DbSet.Where(consulta);
-            return Adapter.FroModel(data.ToList());
+            return Adapter.FromModel(data.ToList());
         }
 
         public virtual ICollection<TModel> Get()//devuelvo una lista de modelos
         {
-            return Adapter.FroModel(DbSet.ToList());
+            return Adapter.FromModel(DbSet.ToList());
         }
     }
 }

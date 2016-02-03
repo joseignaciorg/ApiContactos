@@ -21,7 +21,8 @@ namespace ApiContactos.Adapters
             };
         }
 
-        public override MensajeModel FroModel(Mensaje model)
+
+        public override MensajeModel FromModel(Mensaje model)
         {
             return new MensajeModel()
             {

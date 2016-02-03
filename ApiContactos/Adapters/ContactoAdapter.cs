@@ -11,7 +11,7 @@ namespace ApiContactos.Adapters
             return null;
         }
 
-        public override ContactoModel FroModel(Usuario model)
+        public override ContactoModel FromModel(Usuario model)
         {
             return null;
         }
